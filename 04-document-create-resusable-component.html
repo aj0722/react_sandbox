@@ -1,0 +1,66 @@
+<body>
+	<div id="root"></div>
+	<script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+	<script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+	<script type="text/babel">
+
+		const rootElement = document.getElementById('root')
+		const message = <div className="message"> Hello World </div>
+		
+		// converting the message to add parameters
+		const messageWithParams = (props) => <div className="message"> {props.msg} </div>
+
+		// converting the message so it is handled as a function after compiling
+		const MyMessage = props => <div className="message"> {props.msg} </div>
+
+		// converting it to support children
+		const MyLastMessage = props => <div className="message"> {props.children} </div>
+
+		const element =
+			(
+				<div className="container">
+					{message}
+					{message}
+				</div>
+			)
+
+		const newElement =
+			(
+				<div className="container">
+					{messageWithParams({ msg: 'Hello World' })}
+					{messageWithParams({ msg: 'Goodbye World' })}
+				</div>
+			)
+		
+			const functionElement =
+			(
+				<div className="container">
+					{MyMessage({msg: 'Hello World'})}
+					{MyMessage({msg: 'Goodbye World func'})}
+				</div>
+			)
+
+			/*const jsxElement = 
+			(
+				<div className="container">
+					This format is valid too 1
+					<MyMessage> Hello World' </MyMessage>
+					<MyMessage> Goodbye World My Function' </MyMessage>
+					<span> This format is valid too 2</span>
+				</div>
+			)*/
+
+			const jsxElement = 
+			(
+				<div className="container">
+					This format is valid too 1
+					<MyLastMessage> Hello World </MyLastMessage>
+					<MyLastMessage> Goodbye World </MyLastMessage>
+					<span> This format is valid too 2</span>
+				</div>
+			)
+
+		ReactDOM.render(jsxElement, rootElement)
+	</script>
+</body>

@@ -8,22 +8,20 @@
 
 		const rootElement = document.getElementById('root')
 
-		function SayHello({ firstName, lastName }) {
-			return (
-				<div>
-					Hello {firstName} {lastName}
-				</div>
+		function tick() {
+			const time = new Date().toLocaleTimeString()
+			const element = (
+				<div> 
+					<div> The time is: </div> {time}
+					</div>
 			)
+
+			ReactDOM.render(element, rootElement)
+
 		}
 
-		SayHello.propTypes = 
-		{
-			firstName: PropTypes.string.isRequired,
-			lastName: PropTypes.string.isRequired,
-		}
+		tick()
+		setInterval(tick, 1000)
 
-		const element = <SayHello firstName={false} lastName={"Aguilar"} />
-
-		ReactDOM.render(element, rootElement)
 	</script>
 </body>

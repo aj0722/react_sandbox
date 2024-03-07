@@ -9,7 +9,7 @@
     const rootElement = document.getElementById('root')
 
     function Greeting() {
-      // turning this into a function so it is only rendered the first time (lazy initialization)
+      // turning this into a function so it is rendered only the first time the onChange event is triggered (lazy initialization)
       const [name, setName] = React.useState(() => {
         console.log('render counter')
         return window.localStorage.getItem('name') || ''

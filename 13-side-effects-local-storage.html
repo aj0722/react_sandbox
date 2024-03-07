@@ -9,12 +9,15 @@
     const rootElement = document.getElementById('root')
 
     function Greeting() {
-      // turning this into a function so it is only rendered the first time (lazy initialization)
-      const [name, setName] = React.useState(() => {
-        console.log('render counter')
-        return window.localStorage.getItem('name') || ''
-      })
+      // using React useState hook 
+      //const [name, setName] = React.useState('')
+      const [name, setName] = React.useState(
+        window.localStorage.getItem('name') || '', // loading it with the existing value
+      )
 
+      console.log('render counter')
+
+      // using React side-effect hook 
       React.useEffect(() => {
         window.localStorage.setItem('name', name)
       })
